@@ -6,6 +6,11 @@
         <field name="model">task</field>
         <field name="arch" type="xml">
             <form string="Task Manager">
+            <header> 
+              
+                    <button string="Task Complete" name="action_complete"  type="object" class="oe_highlight" />
+    
+                </header>
                 <sheet>
                     <group>
                         <group>
