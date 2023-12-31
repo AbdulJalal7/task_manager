@@ -10,6 +10,10 @@ class Task(models.Model):
     Completed=fields.Boolean('Completed')
 
 
+    def action_complete(self):
+        self.Completed=True
+
+
     @api.model
     def create(self, vals_list):
         return super(Task, self).create(vals_list)
