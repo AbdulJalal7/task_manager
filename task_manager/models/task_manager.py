@@ -1,4 +1,5 @@
 from odoo import fields, models,api
+from datetime import datetime,date,timedelta
 
 
 class Task(models.Model):
@@ -8,6 +9,21 @@ class Task(models.Model):
     Description=fields.Text('Description')
     Deadline=fields.Date('Deadline')
     Completed=fields.Boolean('Completed')
+    remaining_days=fields.Integer('Days Left',compute='_compute_left_days')
+
+    @api.depends('Deadline')
+    def _compute_left_days(self):
+        for rec in self:
+            current=date.today()
+            if rec.Deadline:
+                remaining=rec.Deadline-current
+                print("RRRRRRRR : ",remaining)
+
+                rec.remaining_days=3
+            else:
+                rec.remaining_days=0
+
+
 
 
     def action_complete(self):
